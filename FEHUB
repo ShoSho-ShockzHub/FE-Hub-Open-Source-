@@ -1,0 +1,94 @@
+local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
+
+local UI = Material.Load({
+     Title = "Sho's FE Hub", 
+     Style = 2,
+     SizeX = 400, -- Size in X
+     SizeY = 300,  -- Size in Y
+     Theme = "Aqua", -- There are 5 Styles, Aqua, Mocha, Jester, Dark, Light
+     ColorOverrides = {
+        MainFrame = Color3.fromRGB(35, 35, 35)
+    }
+})
+
+-- pages.
+
+local Page = UI.New({
+    Title = "Scripts" 
+})
+
+local Page2 = UI.New({
+    Title = "Reanimation" 
+})
+
+-- Scripts
+
+Page.Button({
+    Text = "Gale Fighter",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/GelatekWasTaken/Tutorial/main/Scripts/Gale%20Fighter.lua"))()
+    end
+})
+
+Page.Button({
+    Text = "Neptunian V",
+    Callback = function()
+         loadstring(game:HttpGet("https://raw.githubusercontent.com/GelatekWasTaken/Tutorial/main/Scripts/Neptunian%20V.lua"))()
+    end
+})
+
+Page2.Button({
+    Text = "Main Reanimate",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/GelatekWasTaken/Tutorial/main/Reanimations/R6"))()
+    end
+})
+
+Page2.Button({
+    Text = "Simple Netless",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/TkwRVzge"))()
+    end
+})
+
+Page2.Button({
+    Text = "Simple Net",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/R9EpUtfj"))()
+    end
+})
+
+Page2.Slider({
+    Text = "Change SimulationRadius",
+    Callback = function(value)
+        sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", (value))
+    end,
+    Min = 1,
+    Max = 1000,
+    Def = 800
+})
+
+Page2.Slider({
+    Text = "Change MaximumSimulationRadius",
+    Callback = function(value)
+        sethiddenproperty(game.Players.LocalPlayer, "MaximumSimulationRadius", (value))
+    end,
+    Min = 1,
+    Max = 1000,
+    Def = 1000
+})
+
+Page2.Button({
+    Text = "Get SimulationRadius Value",
+    Callback = function()
+        print(gethiddenproperty(game.Players.LocalPlayer, "MaximumSimulationRadius"))
+        warn(gethiddenproperty(game.Players.LocalPlayer, "MaximumSimulationRadius"))
+    end,
+    Menu = {
+        Information = function(self)
+            UI.Banner({
+                Text = "Prints SimulationRadius Value in console | White text is your current simulation radius, the yellow one will display your maximum simulationradius"            
+            })
+        end
+    }
+})
